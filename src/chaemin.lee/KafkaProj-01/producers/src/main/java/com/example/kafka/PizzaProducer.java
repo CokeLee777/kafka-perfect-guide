@@ -107,6 +107,7 @@ public class PizzaProducer {
     props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     props.setProperty(
         ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    props.setProperty(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, "50000");
 
     // acks setting
 //    props.setProperty(ProducerConfig.ACKS_CONFIG, "0");
