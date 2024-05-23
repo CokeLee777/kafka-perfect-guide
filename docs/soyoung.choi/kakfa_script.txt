@@ -265,7 +265,7 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic pizza-topic-par
 echo "exclude.internal.topics=false" > consumer_temp.config
 
 2. __consumer_offsets 토픽을 읽기
- kafka-console-consumer --consumer.config /home/min/consumer_temp.config \
+ kafka-console-consumer --consumer.config consumer_temp.config \
  --bootstrap-server localhost:9092 --topic __consumer_offsets \
  --formatter "kafka.coordinator.group.GroupMetadataManager\$OffsetsMessageFormatter"
 
