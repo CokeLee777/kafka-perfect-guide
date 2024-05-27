@@ -121,18 +121,18 @@ public class PizzaProducer {
 
             // idempotence setting
             // 1. 명시적 설정 안 하고, 디폴트 상황이라면,
-            props.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "6");
+            //props.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "6");
             // 5 이상이므로 멱등성으로 안 보내짐. // 콘솔로 확인할 방법은 없음.
-            props.setProperty(ProducerConfig.ACKS_CONFIG, "0");
+            //props.setProperty(ProducerConfig.ACKS_CONFIG, "0");
             // producer 가지만, 멱등석으로 안 보내짐.
 
             // 2. 원래 디폴트 상황이지만, 아래와 같이 명시적으로 설정했다면,
             // 이때, 위와 같이 맞지 않는 파라미터 설정을 했다면,  config 오류가 발생하면서 producer 가 기동되지 않음.
-            props.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
+            //props.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
 
 
             KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(props);
-            sendPizzaMessage(kafkaProducer, topicName, -1, 10, 100, 100, true);
+            sendPizzaMessage(kafkaProducer, topicName, -1, 500, 0, 0, true);
 
             kafkaProducer.close();
 

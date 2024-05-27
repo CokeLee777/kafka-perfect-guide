@@ -21,15 +21,19 @@ public class ConsumerWakeup {
 
         Properties props = new Properties();
 
-        String topicName = "simple-topic";
+        String topicName = "pizza-topic";
 
         // 필수 consumer config
         props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.56.101:9092");
         props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "group_01");
+//        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "group_01");
+        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "group-01-static");
+//        props.setProperty(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "1");
+//        props.setProperty(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "2");
+//        props.setProperty(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "3");
 
-        props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        //props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String, String>(props);
         kafkaConsumer.subscribe(List.of(topicName));
@@ -64,8 +68,8 @@ public class ConsumerWakeup {
                 ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(1000)); // 배치 단위 메시지 // 1초 동안 기다리게
 
                 for(ConsumerRecord  record: consumerRecords) {
-                    logger.info("record key : {}, record value : {}, partition : {}, record offset : {}"
-                            , record.key(), record.value(), record.partition(), record.offset());
+                    logger.info("record key : {}, partition : {}, record offset : {}, record value : {}"
+                            , record.key(), record.partition(), record.offset(), record.value());
                 }
             }
         }catch (WakeupException e) {
