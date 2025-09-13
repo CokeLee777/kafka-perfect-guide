@@ -1,10 +1,13 @@
 
 # schema registry
 
-https://docs.confluent.io/platform/current/schema-registry/index.html
+![alt text](images/shema-registry1.png)
 
 - 운영에선 요구사항이 변경될 때, 메시지의 형태가 변하는 때가 있을 것. 이때, prodcuer 에서 메시지 형태가 변경된 채 보냈는데, 이를 consumer가 대응하지 못한다면 에러가 날 것. 이를 방지하기 게 schema registry
 -  RESTful 인터페이스를 사용하여 스키마(Schema)를 관리하거나 조회하는 기능을 제공
+
+https://docs.confluent.io/platform/current/schema-registry/index.html
+
 
 ### 장점
 -  메시지의 스키마를 보다 안전하게 관리할 수 있음.
